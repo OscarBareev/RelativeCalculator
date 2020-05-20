@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".MainActivity">
+
+
+    <!--LINE 1-->
+    <TextView
+        android:id="@+id/textField"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        android:gravity="right|center"
+        android:paddingRight="8dp"
+        android:layout_above="@id/plusMinusBtn"
+        android:textColor="#ffffff"
+        android:textSize="72sp" />
+
+
+    <!--LINE 2-->
+    <Button
+        android:id="@+id/resetBtn"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_above="@id/sevenBtn"
+        android:layout_alignParentStart="true"
+        android:layout_margin="1dp"
+        android:background="#cacbcf"
+        android:text="@string/c"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/plusMinusBtn"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_above="@id/eightBtn"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/resetBtn"
+        android:background="#cacbcf"
+        android:text="@string/plusMinus"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/percentBtn"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_above="@id/nineBtn"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/plusMinusBtn"
+        android:background="#cacbcf"
+        android:text="@string/percent"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/divideBtn"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_above="@id/xBtn"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/percentBtn"
+        android:background="#f57808"
+        android:text="@string/divide"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+
+    <!--LINE 3-->
+    <Button
+        android:id="@+id/sevenBtn"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:layout_above="@id/fourBtn"
+        android:layout_alignParentStart="true"
+        android:layout_margin="1dp"
+        android:background="#cacbcf"
+        android:text="@string/seven"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/eightBtn"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:layout_above="@id/fiveBtn"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/sevenBtn"
+        android:background="#cacbcf"
+        android:text="@string/eight"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/nineBtn"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:layout_above="@id/sixBtn"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/eightBtn"
+        android:background="#cacbcf"
+        android:text="@string/nine"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/xBtn"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_above="@id/fourBtn"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/nineBtn"
+        android:background="#f57808"
+        android:text="@string/x"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+
+    <!--LINE 4-->
+    <Button
+        android:id="@+id/fourBtn"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:layout_above="@id/oneBtn"
+        android:layout_alignParentStart="true"
+        android:layout_margin="1dp"
+        android:background="#cacbcf"
+        android:text="@string/four"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/fiveBtn"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:layout_above="@id/threeBtn"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/fourBtn"
+        android:background="#cacbcf"
+        android:text="@string/five"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/sixBtn"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:layout_above="@id/threeBtn"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/fiveBtn"
+        android:background="#cacbcf"
+        android:text="@string/six"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/minusBtn"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_above="@id/plusBtn"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/sixBtn"
+        android:background="#f57808"
+        android:text="@string/minus"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+
+    <!--LINE 5-->
+    <Button
+        android:id="@+id/oneBtn"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:layout_above="@id/zeroBtn"
+        android:layout_alignParentStart="true"
+        android:layout_margin="1dp"
+        android:background="#cacbcf"
+        android:text="@string/one"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/twoBtn"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:layout_above="@id/zeroBtn"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/oneBtn"
+        android:background="#cacbcf"
+        android:text="@string/two"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/threeBtn"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:layout_above="@+id/dotBtn"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/twoBtn"
+        android:background="#cacbcf"
+        android:text="@string/three"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/plusBtn"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_above="@id/resultBtn"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/threeBtn"
+        android:background="#f57808"
+        android:text="@string/plus"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+    <!--LINE 6-->
+
+    <Button
+        android:id="@+id/zeroBtn"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="1dp"
+        android:layout_toStartOf="@id/dotBtn"
+        android:background="#cacbcf"
+        android:text="@string/zero"
+        android:textSize="24sp" />
+
+
+    <Button
+        android:id="@+id/dotBtn"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/twoBtn"
+        android:background="#cacbcf"
+        android:text="@string/dot"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/resultBtn"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="1dp"
+        android:layout_toEndOf="@id/dotBtn"
+        android:background="#f57808"
+        android:text="@string/result"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+
+</RelativeLayout>
