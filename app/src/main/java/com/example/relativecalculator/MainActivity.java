@@ -37,12 +37,15 @@ public class MainActivity extends AppCompatActivity {
     private Button minusBtn;
     private Button plusBtn;
     private Button resultBtn;
+    private Button plusMinusBtn;
+    private Button percent;
 
     //operation booleans
     private boolean isDivide = false;
     private boolean isMultiply = false;
     private boolean isMinus = false;
     private boolean isPlus = false;
+    private boolean negativeNmb = false;
 
 
     @Override
@@ -77,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
         minusBtn = findViewById(R.id.minusBtn);
         plusBtn = findViewById(R.id.plusBtn);
         resultBtn = findViewById(R.id.resultBtn);
+        plusMinusBtn = findViewById(R.id.plusMinusBtn);
+        percent = findViewById(R.id.percentBtn);
 
 
         oneBtn.setOnClickListener(numbersClickListener);
@@ -97,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
         minusBtn.setOnClickListener(operationClickListener);
         plusBtn.setOnClickListener(operationClickListener);
         resultBtn.setOnClickListener(operationClickListener);
+        plusMinusBtn.setOnClickListener(operationClickListener);
+        percent.setOnClickListener(operationClickListener);
     }
 
 
@@ -159,10 +166,15 @@ public class MainActivity extends AppCompatActivity {
                     resultField.setText(result);
                     break;
                 case R.id.resetBtn:
+                    isDivide = false;
+                    isMultiply = false;
+                    isMinus = false;
+                    isPlus = false;
+                    negativeNmb = false;
+
                     result = zeroBtn.getText().toString();
                     resultField.setText(result);
                     break;
-
             }
         }
     };
@@ -182,25 +194,50 @@ public class MainActivity extends AppCompatActivity {
                     keepNumber = result;
                     result = "";
                     isMultiply = true;
-
                     break;
                 case R.id.minusBtn:
                     makeOperations();
                     keepNumber = result;
                     result = "";
                     isMinus = true;
-
                     break;
                 case R.id.plusBtn:
                     makeOperations();
                     keepNumber = result;
                     result = "";
                     isPlus = true;
-
                     break;
                 case R.id.resultBtn:
                     makeOperations();
                     break;
+                case R.id.plusMinusBtn:
+                    if (!negativeNmb) {
+                        result = "-" + result;
+                        negativeNmb = true;
+                        resultField.setText(result);
+                    } else {
+                        result = result.substring(1);
+                        negativeNmb = false;
+                        resultField.setText(result);
+                    }
+                case R.id.percentBtn:
+                    final BigDecimal makePercent = new BigDecimal("0.01");
+
+                    if (result.trim().equals("")) result = "0";
+
+                    if (isMultiply || isDivide) {
+                        BigDecimal percentDecimal = new BigDecimal(result);
+                        percentDecimal = percentDecimal.multiply(makePercent);
+                        result = percentDecimal.toString();
+                        resultField.setText(result);
+                    }
+                    if (isPlus || isMinus) {
+                        BigDecimal keepDecimal = new BigDecimal(keepNumber);
+                        BigDecimal resultDecimal = new BigDecimal(result);
+                        resultDecimal = resultDecimal.multiply(makePercent);
+                        result = keepDecimal.multiply(resultDecimal).toString();
+                        resultField.setText(result);
+                    }
             }
         }
     };
