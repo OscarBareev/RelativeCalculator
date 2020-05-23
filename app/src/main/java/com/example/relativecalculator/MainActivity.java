@@ -7,13 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView resultField;
     private String result = "";
+    private String keepNumber = "";
 
+
+    //number buttons
     private Button oneBtn;
     private Button twoBtn;
     private Button threeBtn;
@@ -27,6 +31,19 @@ public class MainActivity extends AppCompatActivity {
     private Button dotBtn;
     private Button resetBtn;
 
+    //operation buttons
+    private Button divideBtn;
+    private Button multiplyBtn;
+    private Button minusBtn;
+    private Button plusBtn;
+    private Button resultBtn;
+
+    //operation booleans
+    private boolean isDivide = false;
+    private boolean isMultiply = false;
+    private boolean isMinus = false;
+    private boolean isPlus = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +53,11 @@ public class MainActivity extends AppCompatActivity {
         init();
     }
 
-    private void init(){
+    private void init() {
         resultField = findViewById(R.id.textField);
         resultField.setText("0");
 
+        //initialize number buttons
         oneBtn = findViewById(R.id.oneBtn);
         twoBtn = findViewById(R.id.twoBtn);
         threeBtn = findViewById(R.id.threeBtn);
@@ -53,23 +71,36 @@ public class MainActivity extends AppCompatActivity {
         dotBtn = findViewById(R.id.dotBtn);
         resetBtn = findViewById(R.id.resetBtn);
 
-        oneBtn.setOnClickListener(myButtonClickListener);
-        twoBtn.setOnClickListener(myButtonClickListener);
-        threeBtn.setOnClickListener(myButtonClickListener);
-        fourBtn.setOnClickListener(myButtonClickListener);
-        fiveBtn.setOnClickListener(myButtonClickListener);
-        sixBtn.setOnClickListener(myButtonClickListener);
-        sevenBtn.setOnClickListener(myButtonClickListener);
-        eightBtn.setOnClickListener(myButtonClickListener);
-        nineBtn.setOnClickListener(myButtonClickListener);
-        zeroBtn.setOnClickListener(myButtonClickListener);
-        dotBtn.setOnClickListener(myButtonClickListener);
-        resetBtn.setOnClickListener(myButtonClickListener);
+        //initialize operation buttons
+        divideBtn = findViewById(R.id.divideBtn);
+        multiplyBtn = findViewById(R.id.xBtn);
+        minusBtn = findViewById(R.id.minusBtn);
+        plusBtn = findViewById(R.id.plusBtn);
+        resultBtn = findViewById(R.id.resultBtn);
+
+
+        oneBtn.setOnClickListener(numbersClickListener);
+        twoBtn.setOnClickListener(numbersClickListener);
+        threeBtn.setOnClickListener(numbersClickListener);
+        fourBtn.setOnClickListener(numbersClickListener);
+        fiveBtn.setOnClickListener(numbersClickListener);
+        sixBtn.setOnClickListener(numbersClickListener);
+        sevenBtn.setOnClickListener(numbersClickListener);
+        eightBtn.setOnClickListener(numbersClickListener);
+        nineBtn.setOnClickListener(numbersClickListener);
+        zeroBtn.setOnClickListener(numbersClickListener);
+        dotBtn.setOnClickListener(numbersClickListener);
+        resetBtn.setOnClickListener(numbersClickListener);
+
+        divideBtn.setOnClickListener(operationClickListener);
+        multiplyBtn.setOnClickListener(operationClickListener);
+        minusBtn.setOnClickListener(operationClickListener);
+        plusBtn.setOnClickListener(operationClickListener);
+        resultBtn.setOnClickListener(operationClickListener);
     }
 
 
-
-    View.OnClickListener myButtonClickListener = new View.OnClickListener() {
+    View.OnClickListener numbersClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
@@ -136,9 +167,87 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void clearResult(){
-        if (resultField.getText().toString().trim().equals("0")){
+    View.OnClickListener operationClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.divideBtn:
+                    makeOperations();
+                    keepNumber = result;
+                    result = "";
+                    isDivide = true;
+                    break;
+                case R.id.xBtn:
+                    makeOperations();
+                    keepNumber = result;
+                    result = "";
+                    isMultiply = true;
+
+                    break;
+                case R.id.minusBtn:
+                    makeOperations();
+                    keepNumber = result;
+                    result = "";
+                    isMinus = true;
+
+                    break;
+                case R.id.plusBtn:
+                    makeOperations();
+                    keepNumber = result;
+                    result = "";
+                    isPlus = true;
+
+                    break;
+                case R.id.resultBtn:
+                    makeOperations();
+                    break;
+            }
+        }
+    };
+
+    private void clearResult() {
+        if (resultField.getText().toString().trim().equals("0")) {
             result = "";
+        }
+    }
+
+
+    private void makeOperations() {
+        if (isDivide) {
+            isDivide = false;
+            BigDecimal keepDecimal = new BigDecimal(keepNumber);
+            BigDecimal resultDecimal = new BigDecimal(result);
+            keepDecimal = keepDecimal.divide(resultDecimal, 6, BigDecimal.ROUND_HALF_EVEN);
+            result = keepDecimal.toString();
+            resultField.setText(result);
+        }
+
+        if (isMultiply) {
+            isMultiply = false;
+            BigDecimal keepDecimal = new BigDecimal(keepNumber);
+            BigDecimal resultDecimal = new BigDecimal(result);
+            keepDecimal = keepDecimal.multiply(resultDecimal);
+            result = keepDecimal.toString();
+            resultField.setText(result);
+        }
+
+        if (isMinus) {
+            isMinus = false;
+            BigDecimal keepDecimal = new BigDecimal(keepNumber);
+            BigDecimal resultDecimal = new BigDecimal(result);
+            keepDecimal = keepDecimal.subtract(resultDecimal);
+            result = keepDecimal.toString();
+            resultField.setText(result);
+        }
+
+        if (isPlus) {
+            isPlus = false;
+            BigDecimal keepDecimal;
+            keepDecimal = new BigDecimal(keepNumber);
+            BigDecimal resultDecimal = new BigDecimal(result);
+            keepDecimal = keepDecimal.add(resultDecimal);
+            result = keepDecimal.toString();
+            resultField.setText(result);
         }
     }
 }
