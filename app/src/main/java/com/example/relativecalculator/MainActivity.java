@@ -211,15 +211,18 @@ public class MainActivity extends AppCompatActivity {
                     makeOperations();
                     break;
                 case R.id.plusMinusBtn:
-                    if (!negativeNmb) {
-                        result = "-" + result;
-                        negativeNmb = true;
-                        resultField.setText(result);
-                    } else {
-                        result = result.substring(1);
-                        negativeNmb = false;
-                        resultField.setText(result);
+                    if (!result.trim().equals("0") && !result.trim().equals("")) {
+                        if (!negativeNmb) {
+                            result = "-" + result;
+                            negativeNmb = true;
+                            resultField.setText(result);
+                        } else {
+                            result = result.substring(1);
+                            negativeNmb = false;
+                            resultField.setText(result);
+                        }
                     }
+
                 case R.id.percentBtn:
                     final BigDecimal makePercent = new BigDecimal("0.01");
 
